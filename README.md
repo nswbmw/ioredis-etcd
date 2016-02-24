@@ -1,6 +1,6 @@
 ## ioredis-etcd
 
-ioredis for etcd, for connecting different redis dynamically.
+ioredis for etcd, for connecting different redis/codis dynamically.
 
 ### Install
 

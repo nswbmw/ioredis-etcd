@@ -1,0 +1,25 @@
+{
+  "name": "ioredis-etcd",
+  "version": "1.0.0",
+  "description": "ioredis for etcd, for connecting different redis/codis dynamically.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "redis",
+    "ioredis",
+    "etcd"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^1.15.1",
+    "ioredis-commands": "^4.0.0",
+    "lodash": "^4.5.1",
+    "node-etcd": "^4.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nswbmw/ioredis-etcd"
+  }
+}

@@ -49,6 +49,7 @@ module.exports = function (etcdUrl, etcdRedisConfig, _codis) {
       redis.disconnect();
     } catch (e) {}
 
+    redis.newRedis= newRedis;
     redis.disconnect = newRedis.disconnect.bind(newRedis);
   }
   return redis;

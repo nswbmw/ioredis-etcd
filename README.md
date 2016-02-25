@@ -10,12 +10,12 @@ npm i ioredis-etcd --save
 
 ### Usage
 
-#### require('ioredis-etcd')(etcdUrl, etcdRedisConfig, _codis);
+#### require('ioredis-etcd')(etcdUrl, etcdRedisConfig, _opts, _codis);
 
 for redis:
 
 ```
-var redis = require('ioredis-etcd')(['10.10.10.9:4001'], '/v1/redis');
+var redis = require('ioredis-etcd')(['10.10.10.9:4001'], '/v1/redis', { password: xxx });
 redis
   .get('key')
   .then(console.log)
@@ -25,7 +25,7 @@ redis
 for codis:
 
 ```
-var redis = require('ioredis-etcd')(['10.10.10.9:4001'], '/v1/codis', true);
+var redis = require('ioredis-etcd')(['10.10.10.9:4001'], '/v1/codis', {}, true);
 redis
   .get('key')
   .then(console.log)

@@ -6,7 +6,7 @@ var Redis = require('ioredis');
 var commands = require('ioredis-commands');
 var redis = {};
 
-module.exports = function (etcdUrl, etcdRedisConfig, _codis) {
+module.exports = function (etcdUrl, etcdRedisConfig, _opts, _codis) {
   if (arguments.length < 2) {
     throw new TypeError('Missing etcdUrl or etcdRedisConfig');
   }
@@ -37,10 +37,11 @@ module.exports = function (etcdUrl, etcdRedisConfig, _codis) {
       return;
     }
 
-    var url = formatUrl(urls[Math.floor(Math.random() * urls.length)]);
+    var url = urls[Math.floor(Math.random() * urls.length)];
     console.log('connect: %s', url);
+    url = formatUrl(url);
 
-    var newRedis = new Redis(url);
+    var newRedis = new Redis(url.port, url.host, _opts);
     Object.keys(commands).forEach(function (command) {
       redis[command] = newRedis[command].bind(newRedis);
     });
@@ -56,10 +57,11 @@ module.exports = function (etcdUrl, etcdRedisConfig, _codis) {
 };
 
 function formatUrl(url) {
-  if (!/^redis\:\/\//.test(url)) {
-    url = 'redis://' + url;
-  }
-  return url;
+  var arr = url.split(':');
+  return {
+    host: arr[0],
+    port: arr[1]
+  };
 }
 
 function defaultCodisStrategy(urls) {
